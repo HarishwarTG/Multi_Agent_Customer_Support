@@ -1,54 +1,65 @@
-<h1 align="center" id="title">Multi Agent Customer Support</h1>
+<h1 align="center" id="title">Multi-Agent Customer Support System</h1>
 
 <h2>🚀 Project Overview</h2>
+<p>This project implements a multi-agent system designed to handle customer support queries efficiently. The system utilizes a <strong>ManagerAgent</strong> to route tasks intelligently to specialized agents such as the <strong>OrderLookupAgent</strong> and <strong>FAQAgent</strong>. These agents interact with a vector database for information retrieval, ensuring accurate and timely responses to customer queries.</p>
 
-Our flow begins with a user's question. This will then be passed to the <strong>ManagerAgent</strong> and various other input fields as needed.
+<h2>System Architecture and Agent Workflow</h2>
 
-<h2>Multi-Agent Routing and Tool Utilization</h2>
+<h3>Step 1: Receiving User Input</h3>
+<ul>
+  <li>The process begins when a user submits a question or query.</li>
+  <li>The input is directed to the <strong>ManagerAgent</strong>, which acts as the central coordinator.</li>
+</ul>
 
-The <strong>ManagerAgent</strong> serves as a task coordinator, intelligently delegating responsibilities to specialized agents. Upon receiving a user's question, it evaluates the input and determines whether to utilize the <strong>OrderLookupAgent</strong> or the <strong>FAQAgent</strong> as a tool.
+<h3>Step 2: Task Delegation by ManagerAgent</h3>
+<ul>
+  <li><strong>ManagerAgent</strong> evaluates the user's query to determine the appropriate course of action.</li>
+  <li>It decides whether to delegate the task to the <strong>OrderLookupAgent</strong> or the <strong>FAQAgent</strong>.</li>
+</ul>
 
-Once a response is obtained from the selected agent, the <strong>ManagerAgent</strong> synthesizes the information into a clear and cohesive reply.
+<h3>Step 3: OrderLookupAgent Functionality</h3>
+<ul>
+  <li>When selected, the <strong>OrderLookupAgent</strong> processes the input to retrieve order or product information.</li>
+  <li>It queries the <strong>AstraDB</strong> vector store using mandatory parameters such as <em>orderNumber</em> and <em>productId</em>.</li>
+  <li>Utilizes AstraDB tools to search the <strong>products</strong> and <strong>orders</strong> collections for relevant details.</li>
+</ul>
 
-<h3>OrderLookupAgent</h3>
+<h3>Step 4: FAQAgent Functionality</h3>
+<ul>
+  <li>If the <strong>FAQAgent</strong> is chosen, it leverages the Retrieval-Augmented Generation (RAG) model.</li>
+  <li>The agent searches the FAQ database in <strong>AstraDB</strong> to find answers matching the user's query.</li>
+  <li>It uses <strong>Astra Vectorize</strong> and <strong>NV-Embed-QA</strong> to convert text into vector representations for semantic search.</li>
+</ul>
 
-The <strong>OrderLookupAgent</strong> operates in tool mode, allowing it to be utilized as a resource by the <strong>ManagerAgent</strong>. It processes input provided by the <strong>ManagerAgent</strong> to fulfill specific tasks.
+<h3>Step 5: Data Retrieval and Response Synthesis</h3>
+<ul>
+  <li>Once the relevant information is retrieved, the <strong>ManagerAgent</strong> synthesizes the data into a coherent response.</li>
+  <li>The synthesized response is then sent back to the user, providing a clear and accurate answer to their query.</li>
+</ul>
 
-Equipped with its own set of capabilities, this agent can access tools to retrieve information about orders and products. By leveraging the AstraDB vector store, it efficiently looks up details based on their IDs.
+<h2>Key Components</h2>
 
-<h3>Querying the Database</h3>
-
-The two Astra DB tools seen here are used to query information from the products and orders collection. These are used as tools by the <strong>OrderLookupAgent</strong>.
-
-By providing the <em>orderNumber</em> and <em>productId</em> fields as mandatory tool parameters (due to the !) it forces the agent to pass these values. They will then be used as fields to query rows in each collection.
-
-<h3>FAQ Agent</h3>
-
-The <strong>FAQAgent</strong> operates in tool mode, allowing it to be utilized as a resource by the <strong>ManagerAgent</strong>. It processes input provided by the <strong>ManagerAgent</strong> to fulfill specific tasks.
-
-This agent utilizes RAG, where it is able to search for relevant information from our company's frequently asked questions database.
-
-<h2>Vector DB & RAG</h2>
-
-This component integrates <strong>AstraDB</strong> for storing and searching vectorized data, primarily for tasks like FAQ retrieval or RAG workflows. Here's how it works based on the specific values:
-
+<h3>Vector Database (AstraDB) and RAG Integration</h3>
 <ol>
-  <li><strong>Authentication</strong>: The <strong>Astra DB Application Token</strong> is used to securely connect to AstraDB. This ensures only authorized access to the database.</li>
-  <li><strong>Data Source</strong>: The component queries the customer database, specifically the FAQ collection, which contains pre-stored FAQs or knowledge base entries.</li>
-  <li><strong>Search Input</strong>: The user’s query will be processed when passed to this field dynamically during runtime.</li>
+  <li><strong>Authentication</strong>: Secure connection to AstraDB using an application token.</li>
+  <li><strong>Data Source</strong>: Queries target the FAQ collection or order/product data collections.</li>
+  <li><strong>Search Input</strong>: Dynamic user queries are processed at runtime.</li>
   <li><strong>Embedding Configuration</strong>:
     <ul>
-      <li>Text data is converted into vector representations using the <strong>Astra Vectorize</strong> feature.</li>
-      <li>The embeddings are generated using Nvidia's <strong>NV-Embed-QA</strong> model, which is specialized for question-answer tasks.</li>
-      <li>This ensures the query and stored data are in a comparable format for semantic search.</li>
+      <li>Text data is vectorized using Astra Vectorize and NV-Embed-QA models.</li>
+      <li>Ensures comparable formats for effective semantic search.</li>
     </ul>
   </li>
-  <li><strong>Retrieval Process</strong>: When a query is input, AstraDB searches the vector store to find the most relevant matching documents based on vector similarity.</li>
-  <li><strong>Results</strong>: The output is displayed in the <strong>Search Results</strong> section, providing relevant responses to the user query, such as specific FAQ answers or product details.</li>
+  <li><strong>Retrieval Process</strong>: Vector similarity is used to find the most relevant documents.</li>
+  <li><strong>Results</strong>: Output is presented in the Search Results section.</li>
 </ol>
 
-<h2>Parsing Data & Prompt Injection</h2>
+<h2>Data Parsing and Prompt Injection</h2>
+<ul>
+  <li>Retrieved data from AstraDB is in JSON format.</li>
+  <li>Data is parsed and injected into prompts sent to the LLM/agents.</li>
+  <li>This ensures contextually relevant information is used in generating responses.</li>
+</ul>
 
-When we retrieve data from the Astra DB vector store database, it will be in JSON format. In order to use these data in our prompt and pass it to our LLM/agent, we need to convert it to text.
-
-We start by parsing the data and then pass it as a prompt variable to the prompt that gets sent to our agent. This way the agent can view the contextually relevant results from our DB and use them in its response.
+<h2>Project Objective</h2>
+<p>The objective of the Multi-Agent Customer Support System is to streamline customer support operations by employing specialized agents that interact with a vector database for precise information retrieval, thereby enhancing the efficiency and accuracy of customer query resolution.</p>
