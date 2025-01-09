@@ -1,0 +1,26 @@
+orderNumber,customerFirstName,customerLastName,date,price,status,productIdsOrdered,deliveryDate,discountedPrice,username
+1006,Ananya,Iyer,22-12-2024,17022,Processing,[623],27-12-2024,15319.8,ananya.iyer
+1007,Vikram,Singh,22-12-2024,8078,Shipped,"[201, 605, 615]",28-12-2024,7270.2,vikram.singh
+1008,Meera,Rao,11-12-2024,3219,Cancelled,[621],13-12-2024,2897.1,meera.rao
+1009,Rohan,Das,10-12-2024,16817,Pending,[629],16-12-2024,15135.3,rohan.das
+1010,Aditi,Menon,25-12-2024,9984,Pending,"[602, 606]",27-12-2024,8985.6,aditi.menon
+1011,Kiran,Patel,10-12-2024,4079,Shipped,"[620, 622, 633]",15-12-2024,3671.1,kiran.patel
+1012,Pooja,Kulkarni,23-12-2024,11483,Pending,"[607, 301]",26-12-2024,10334.7,pooja.kulkarni
+1013,Siddharth,Bose,26-12-2024,3535,Processing,"[103, 607, 619]",30-12-2024,3181.5,siddharth.bose
+1014,Nisha,Jain,10-12-2024,8061,Processing,"[103, 630]",16-12-2024,7254.9,nisha.jain
+1015,Ravi,Gupta,12-12-2024,10593,Pending,"[640, 634]",14-12-2024,9533.7,ravi.gupta
+1016,Anjali,Chopra,12-12-2024,14327,Shipped,"[620, 623, 628]",13-12-2024,12894.3,anjali.chopra
+1017,Manoj,Reddy,23-12-2024,6446,Cancelled,"[632, 103]",25-12-2024,5801.4,manoj.reddy
+1018,Swati,Chatterjee,21-12-2024,17451,Processing,"[627, 606]",28-12-2024,15705.9,swati.chatterjee
+1019,Vivek,Kumar,15-12-2024,7927,Pending,[611],17-12-2024,7134.3,vivek.kumar
+1020,Tara,Joshi,19-12-2024,9842,Cancelled,"[625, 621]",25-12-2024,8857.8,tara.joshi
+1021,Kartik,Chatterjee,09-12-2024,18864,Pending,"[628, 622]",11-12-2024,16977.6,kartik.chatterjee
+1022,Sanjay,Pandey,27-12-2024,14047,Processing,[609],31-12-2024,12642.3,sanjay.pandey
+1023,Kavya,Narayan,30-12-2024,11280,Cancelled,"[629, 501, 636]",06-01-2025,10152,kavya.narayan
+1024,Aravind,Bhatt,09-12-2024,10236,Pending,"[636, 601]",16-12-2024,9212.4,aravind.bhatt
+1025,Preeti,Naik,13-12-2024,6317,Pending,"[615, 621, 632]",14-12-2024,5685.3,preeti.naik
+1026,Harsh,Saxena,29-12-2024,10584,Processing,"[618, 603, 201]",01-01-2025,9525.6,harsh.saxena
+1027,Sanya,Goel,26-12-2024,9169,Cancelled,"[639, 628]",28-12-2024,8252.1,sanya.goel
+1028,Ajay,Nambiar,17-12-2024,6450,Cancelled,"[616, 627]",18-12-2024,5805,ajay.nambiar
+1029,Nikita,Bhat,07-12-2024,14145,Processing,"[102, 101, 629]",12-12-2024,12730.5,nikita.bhat
+1030,Varun,Kaushik,09-12-2024,6142,Processing,[615],12-12-2024,5527.8,varun.kaushik
